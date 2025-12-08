@@ -11,6 +11,25 @@ window.addEventListener('DOMContentLoaded', () => {
     const passwordInput = document.getElementById('password-input');
     const passwordSubmit = document.getElementById('password-submit');
     const errorMessage = document.getElementById('error-message');
+    const titleScreen = document.getElementById('title-screen');
+    const instructionsScreen = document.getElementById('instructions-screen');
+
+    // Intro Flow
+    titleScreen.addEventListener('click', () => {
+        titleScreen.style.display = 'none';
+        instructionsScreen.style.display = 'flex';
+        uiState = UI_STATE.INSTRUCTIONS;
+        // Play a sound interaction if possible? Not yet initialized.
+    });
+
+    instructionsScreen.addEventListener('click', () => {
+        instructionsScreen.style.display = 'none';
+        passwordScreen.style.display = 'flex';
+        // Password screen is now active.
+        // uiState stays INSTRUCTIONS or similar to block game?
+        // Actually, handleInput blocks if not running.
+        passwordInput.focus();
+    });
 
     // Leaderboard Elements
     const nameInputModal = document.getElementById('name-input-modal');
@@ -57,17 +76,20 @@ window.addEventListener('DOMContentLoaded', () => {
         passwordScreen.style.display = 'none';
         gameScreen.style.display = 'block';
         soundManager.init(); // Initialize audio context
+        uiState = UI_STATE.NORMAL;
         game.start();
     }
 
     // UI States
     const UI_STATE = {
+        TITLE: 'TITLE',
+        INSTRUCTIONS: 'INSTRUCTIONS',
         NORMAL: 'NORMAL',
         FETCHING: 'FETCHING',
         INPUT_NAME: 'INPUT_NAME',
         SHOWING_RANKING: 'SHOWING_RANKING'
     };
-    let uiState = UI_STATE.NORMAL;
+    let uiState = UI_STATE.TITLE;
 
     // Custom Name Input Logic
     const CHAR_SET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789-.";
@@ -198,6 +220,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const dPadV = document.querySelector('.d-pad-v');
 
     function handleInput(action) {
+        if (uiState === UI_STATE.TITLE || uiState === UI_STATE.INSTRUCTIONS) return;
         if (uiState === UI_STATE.FETCHING) return;
 
         if (uiState === UI_STATE.INPUT_NAME) {
@@ -263,15 +286,23 @@ window.addEventListener('DOMContentLoaded', () => {
     btnB.addEventListener('click', () => handleInput('rotate'));
     btnStart.addEventListener('click', () => handleInput('start'));
 
-    dPadH.addEventListener('click', (e) => {
+    const handleDPadH = (e, isTouch) => {
+        if (isTouch) e.preventDefault();
         const rect = dPadH.getBoundingClientRect();
-        const x = e.clientX - rect.left;
+        const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+        const x = clientX - rect.left;
         if (x < rect.width / 2) {
-            handleInput('left');
+            startMove('left');
         } else {
-            handleInput('right');
+            startMove('right');
         }
-    });
+    };
+
+    dPadH.addEventListener('mousedown', (e) => handleDPadH(e, false));
+    dPadH.addEventListener('touchstart', (e) => handleDPadH(e, true));
+    dPadH.addEventListener('mouseup', stopMove);
+    dPadH.addEventListener('mouseleave', stopMove);
+    dPadH.addEventListener('touchend', stopMove);
 
     // Continuous movement
     let moveInterval = null;
@@ -293,9 +324,9 @@ window.addEventListener('DOMContentLoaded', () => {
                 rate = 200;
             }
         } else if (uiState === UI_STATE.NORMAL) {
-            if (action === 'down') {
-                delay = 200;
-                rate = 100;
+            if (action === 'down' || action === 'left' || action === 'right') {
+                delay = 1000;
+                rate = 200;
             }
         }
 

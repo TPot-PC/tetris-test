@@ -9,7 +9,47 @@
 </head>
 
 <body>
-    <div id="password-screen">
+    <div id="title-screen">
+        <div class="title-content">
+            <h1 class="pixel-font-large">TETRIS</h1>
+            <div class="decoration-blocks">
+                <!-- Simple block art decoration -->
+                <div class="pixel-block"></div>
+                <div class="pixel-block"></div>
+                <div class="pixel-block"></div>
+            </div>
+            <p class="copyright">WEB VERSION</p>
+            <p class="blink start-text">PRESS START</p>
+        </div>
+    </div>
+
+    <div id="instructions-screen" style="display: none;">
+        <div class="instructions-content">
+            <h2>HOW TO PLAY</h2>
+
+            <div class="control-section">
+                <h3>KEYBOARD</h3>
+                <div class="key-map">
+                    <p><span>ARROWS</span> : MOVE / DROP</p>
+                    <p><span>Z / X</span> : ROTATE</p>
+                    <p><span>ENTER</span> : PAUSE</p>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>SCREEN</h3>
+                <div class="key-map">
+                    <p><span>D-PAD</span> : MOVE / DROP</p>
+                    <p><span>A / B</span> : ROTATE</p>
+                    <p><span>START</span> : PAUSE</p>
+                </div>
+            </div>
+
+            <p class="blink">CLICK TO CONTINUE</p>
+        </div>
+    </div>
+
+    <div id="password-screen" style="display: none;">
         <div class="password-container">
             <h1>TETRIS</h1>
             <p>ENTER PASSWORD</p>

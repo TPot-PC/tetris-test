@@ -362,3 +362,123 @@ body {
         opacity: 0;
     }
 }
+
+/* Intro Screens */
+/* Intro Screens */
+#title-screen,
+#instructions-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #9bbc0f;
+    /* Light Green Background */
+    color: #0f380f;
+    /* Dark Green Text */
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.title-content {
+    text-align: center;
+    width: 280px;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #9bbc0f;
+    border: none;
+    box-shadow: none;
+}
+
+.instructions-content {
+    text-align: center;
+    border: 4px solid #0f380f;
+    /* Dark Border */
+    padding: 3rem;
+    background-color: #9bbc0f;
+    box-shadow: 0 0 10px rgba(15, 56, 15, 0.5);
+    color: #0f380f;
+}
+
+.pixel-font-large {
+    font-size: 3.5rem;
+    margin: 0;
+    letter-spacing: 5px;
+    text-shadow: 4px 4px 0 #8bac0f;
+    /* Lighter shadow */
+    font-weight: bold;
+    font-style: italic;
+    color: #0f380f;
+}
+
+.decoration-blocks {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.pixel-block {
+    width: 25px;
+    height: 25px;
+    background-color: #0f380f;
+    box-shadow: 3px 3px 0 #8bac0f;
+}
+
+.copyright {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    font-weight: bold;
+    color: #0f380f;
+}
+
+.start-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #0f380f;
+}
+
+.instructions-content h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid #0f380f;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.control-section h3 {
+    font-size: 1rem;
+    background-color: #0f380f;
+    color: #9bbc0f;
+    padding: 2px 5px;
+    margin: 10px 0 5px 0;
+    text-align: left;
+}
+
+.key-map {
+    text-align: left;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    /* Reduced font size to fit */
+}
+
+.key-map p {
+    margin: 5px 0;
+}
+
+.key-map span {
+    font-weight: bold;
+    color: #306230;
+    /* Medium Dark Green */
+    margin-right: 0.5rem;
+    display: inline-block;
+    width: 60px;
+    /* Adjusted width */
+    text-align: right;
+}
