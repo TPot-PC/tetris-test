@@ -1,0 +1,364 @@
+:root {
+    --gb-body: #c0c0c0;
+    --gb-screen-bg: #9bbc0f;
+    /* Lightest green */
+    --gb-pixel-off: #8bac0f;
+    /* Light green */
+    --gb-pixel-on: #306230;
+    /* Dark green */
+    --gb-pixel-dark: #0f380f;
+    /* Darkest green */
+    --gb-bezel: #555577;
+    /* Dark grey/blueish for screen bezel */
+    --gb-dpad: #222;
+    --gb-btn-a: #8f0e30;
+    /* Dark red */
+    --gb-btn-b: #8f0e30;
+    --gb-btn-opt: #555;
+}
+
+body {
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+#gameboy {
+    width: 300px;
+    height: 500px;
+    background-color: var(--gb-body);
+    border-radius: 10px 10px 40px 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#screen-bezel {
+    background-color: var(--gb-bezel);
+    width: 220px;
+    /* Slightly wider than screen+cover */
+    height: 190px;
+    /* Increased height to fit screen */
+    border-radius: 10px 10px 40px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#power-led {
+    width: 8px;
+    height: 8px;
+    background-color: #f00;
+    border-radius: 50%;
+    position: absolute;
+    top: 60px;
+    /* Adjusted position */
+    left: 15px;
+    box-shadow: 0 0 5px #f00;
+    opacity: 0.8;
+    transition: opacity 0.5s;
+}
+
+#screen-cover {
+    background-color: #777;
+    padding: 15px 20px;
+    /* Adjust padding */
+    border-radius: 5px 5px 20px 5px;
+    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.4);
+    position: relative;
+    /* Important for modal positioning */
+}
+
+#game-canvas {
+    background-color: var(--gb-screen-bg);
+    width: 160px;
+    height: 144px;
+    image-rendering: pixelated;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+    display: block;
+    /* Removed transform scale */
+}
+
+#logo {
+    color: #aaa;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 5px;
+    align-self: flex-start;
+    margin-left: 15px;
+}
+
+#controls {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+#d-pad {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.d-pad-h {
+    width: 90px;
+    height: 30px;
+    background-color: var(--gb-dpad);
+    position: absolute;
+    top: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.d-pad-v {
+    width: 30px;
+    height: 90px;
+    background-color: var(--gb-dpad);
+    position: absolute;
+    left: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    transform: rotate(-15deg);
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    width: 35px;
+    height: 35px;
+    background-color: var(--gb-btn-a);
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.button:active {
+    transform: scale(0.95);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.label {
+    font-size: 10px;
+    color: #555;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+#option-buttons {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+}
+
+.option-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option-button {
+    width: 40px;
+    height: 12px;
+    background-color: var(--gb-btn-opt);
+    border-radius: 10px;
+    transform: rotate(-15deg);
+    border: 1px solid #444;
+    cursor: pointer;
+}
+
+#speaker {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    transform: rotate(-15deg);
+}
+
+.speaker-slot {
+    width: 60px;
+    height: 6px;
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 4px;
+    border-radius: 3px;
+}
+
+/* Password Screen */
+#password-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #222;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.password-container {
+    background-color: #9bbc0f;
+    padding: 3rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 4px solid #306230;
+    box-shadow: 0 0 20px rgba(155, 188, 15, 0.2);
+    color: #0f380f;
+}
+
+.password-container h1 {
+    margin-top: 0;
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    width: 200px;
+}
+
+#password-submit {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #0f380f;
+    color: #9bbc0f;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+    display: block;
+    margin: 0 auto;
+}
+
+#password-submit:hover {
+    background-color: #306230;
+}
+
+#error-message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.controls-hint {
+    color: #aaa;
+    text-align: center;
+    margin-top: 20px;
+    font-family: monospace;
+}
+
+/* Modals */
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 140px;
+    /* Slightly smaller than 160px screen */
+}
+
+.modal-content {
+    background-color: var(--gb-screen-bg);
+    border: 2px solid var(--gb-pixel-dark);
+    padding: 5px;
+    text-align: center;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+    font-family: monospace;
+    color: var(--gb-pixel-dark);
+}
+
+.modal-content h2 {
+    margin: 0 0 5px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--gb-pixel-dark);
+}
+
+.modal-content p {
+    margin: 5px 0;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.modal-content input {
+    display: none;
+    /* Hide original input if present */
+}
+
+#name-entry-container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.char-slot {
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--gb-pixel-dark);
+    background-color: var(--gb-pixel-off);
+    padding: 2px 5px;
+    border: 1px solid var(--gb-pixel-dark);
+    width: 15px;
+    display: inline-block;
+}
+
+.char-slot.active {
+    background-color: var(--gb-pixel-dark);
+    color: var(--gb-screen-bg);
+    animation: blinker 0.5s step-end infinite alternate;
+}
+
+.modal-content button {
+    background-color: var(--gb-pixel-dark);
+    color: var(--gb-screen-bg);
+    border: none;
+    font-family: monospace;
+    font-size: 10px;
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.modal-content button:hover {
+    background-color: var(--gb-pixel-on);
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    margin-bottom: 2px;
+}
+
+.blink {
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
