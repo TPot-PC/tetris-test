@@ -325,8 +325,8 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         } else if (uiState === UI_STATE.NORMAL) {
             if (action === 'down' || action === 'left' || action === 'right') {
-                delay = 1000;
-                rate = 200;
+                delay = 200;
+                rate = 125;
             }
         }
 
