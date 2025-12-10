@@ -406,43 +406,22 @@ body {
     color: #0f380f;
 }
 
-.pixel-font-large {
-    font-size: 3.5rem;
-    margin: 0;
-    letter-spacing: 5px;
-    text-shadow: 4px 4px 0 #8bac0f;
-    /* Lighter shadow */
-    font-weight: bold;
-    font-style: italic;
-    color: #0f380f;
+.title-image {
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    display: block;
+    border-bottom: 4px solid #0f380f;
+    /* Decorative separation */
+    margin-bottom: 15px;
 }
 
-.decoration-blocks {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.pixel-block {
-    width: 25px;
-    height: 25px;
-    background-color: #0f380f;
-    box-shadow: 3px 3px 0 #8bac0f;
-}
-
-.copyright {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    font-weight: bold;
-    color: #0f380f;
-}
-
-.start-text {
+.start-text-overlay {
     font-size: 1.2rem;
     font-weight: bold;
-    margin-top: 20px;
     color: #0f380f;
+    margin-top: 10px;
+    text-shadow: 1px 1px 0 #8bac0f;
 }
 
 .instructions-content h2 {
